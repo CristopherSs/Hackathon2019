@@ -1,0 +1,21 @@
+{
+  "Content-type": "Application/json",
+  "Allow": [
+    "POST",
+    "PUT",
+    "DELETE",
+    "OPTIONS"
+  ],
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Headers": [
+    "Content-Type",
+    "Access-Control-Allow-Methods",
+    "Access-Control-Allow-Headers"
+  ],
+  "Access-Control-Allow-Methods": [
+    "PUT",
+    "DELETE",
+    "POST",
+    "OPTIONS"
+  ]
+}
