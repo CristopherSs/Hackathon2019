@@ -4,11 +4,13 @@ from typing import Dict
 
 from backend.city.city import City
 from backend.department.department import Department
+from database.database import Database
 from database.table_generator.table_generator import TableGenerator
 from database.query_launcher import QueryLauncher
 from backend.user.user import User
 from backend.user.disability import Disabilities
 from backend.department.areas import Areas
+
 
 def generate(config: Dict) -> None:
     """
