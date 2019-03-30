@@ -5,7 +5,8 @@
 from typing import Dict
 
 from flask import Flask
-from Rooms.API.resources_api.api import Api
+
+from API.resources_api.api import Api
 
 
 class ApplicationFlask(Flask):
