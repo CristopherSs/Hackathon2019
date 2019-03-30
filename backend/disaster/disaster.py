@@ -1,5 +1,8 @@
 """"Disaster module"""
 from dataclasses import dataclass
+
+from API.request_querys.request import Query
+from backend.department.department import Department
 from database.i_table import Table
 
 
@@ -14,3 +17,10 @@ class Disaster(Table):
 
     def get_class_name(self) -> str:
         return self.__class__.__name__
+
+    def contact_department(self) -> None:
+        data = {'reference': Department, 'ip': '', 'port': '8080'}
+        request = Query(data)
+        department = request.get_data(str(self.disaster_id))
+
+
