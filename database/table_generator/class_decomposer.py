@@ -20,10 +20,12 @@ class ClassDecomposer:
         """
         variables_type = list()
         constraint = None
-        variable = self.__instance.__getattribute__(variable_name)
-        variable_type = type(variable)
-        if isinstance(variable, Enum):
-            variable_type = type(variable.value)
+        attribute = self.__instance.__getattribute__(variable_name)
+        variable_type = type(attribute)
+        if isinstance(attribute, Table):
+            variable_type = type(attribute.__getattribute__(attribute.get_primary_key()))
+        if isinstance(attribute, Enum):
+            variable_type = type(attribute.value)
         if variable_type is int and ('has' != variable_name[0:3] != 'is_'):
             variables_type.append('INT(5)')
         elif variable_type is str:

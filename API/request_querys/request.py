@@ -2,14 +2,9 @@
     Query:this class is one test for use API
 """
 from copy import copy
-from typing import Union
 from datetime import date
-
 import requests
-
-from Rooms.backend.room.room import Room
-from Rooms.backend.booking.only_booking import Booking
-from Rooms.backend.user.user import User
+from database.i_table import Table
 
 
 class Query:
@@ -25,10 +20,10 @@ class Query:
         name_table = self.__reference.__name__
         self.__url = 'http://{0}:{1}/{2}/'.format(_ip, port, name_table)
 
-    def save_data(self, save_data: Union[Room, Booking]) -> object:
+    def save_data(self, save_data: Table) -> object:
         """
         this method save to object
-        :param upgrade:
+        :param save_data:
         :return: object
         """
         if self.__verify_type_send_exception(type(save_data)):
@@ -38,7 +33,7 @@ class Query:
             data_saved = request.json()[0]
         return copy(self.__reference(**data_saved))
 
-    def upgrade_data(self, upgrade_data: Union[Room, Booking]) -> object:
+    def upgrade_data(self, upgrade_data: Table) -> object:
         """
         this method upgrade all data from object on database
         :return:object
@@ -47,7 +42,7 @@ class Query:
             data_saved = requests.put(self.__url, json=upgrade_data.get_dict()).json()[0]
         return copy(self.__reference(**data_saved))
 
-    def delete_data(self, delete_data: Union[Room, Booking, User]) -> None:
+    def delete_data(self, delete_data: Table) -> None:
         """
             this method delete to object
 
