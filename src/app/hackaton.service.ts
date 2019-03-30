@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {Observable, of} from 'rxjs';
 import {catchError, map, tap} from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import {User} from './user'
+import {Damaged} from './damaged'
 
 const httpOptions = {headers: new HttpHeaders({'Content-Type': 'application/json'})};
 
@@ -12,36 +12,37 @@ const httpOptions = {headers: new HttpHeaders({'Content-Type': 'application/json
   providedIn: 'root'
 })
 export class HackatonService {
-  private hackatonURL = 'localhost/'
+  private hackatonURL = '172.20.80.27:8080/User/'
 
   constructor(
     private http: HttpClient,
   ) { }
   
-  getItems(): Observable<User[]>{
-    return this.http.get<User[]>(this.hackatonURL);
+  getItems(): Observable<Damaged[]>{
+    return this.http.get<Damaged[]>(this.hackatonURL);
   }
 
-  getItem(id: number): Observable<User>{
+  getItem(id: number): Observable<Damaged>{
     const url= `${this.hackatonURL}${id}`;
-    return this.http.get<User>(url);
+    return this.http.get<Damaged>(url);
   }
 
-  postItem(item: User): Observable<User>{
-    return this.http.post<User>(this.hackatonURL, item, httpOptions);
+  postItem(item: Damaged): Observable<Damaged>{
+    console.log(item)
+    return this.http.post<Damaged>(this.hackatonURL, item, httpOptions);
   }
 
-  updateItem(item: User): Observable<any>{
-    const id = typeof item === 'number' ? item : item.id;
+  updateItem(item: Damaged): Observable<any>{
+    const id = typeof item === 'number' ? item : item.user_id;
     const url = `${this.hackatonURL}${id}`;
     return this.http.put(url, item, httpOptions);
   }
 
-  deleteItem(item: User | number): Observable<User> {
-    const id = typeof item === 'number' ? item : item.id;
+  deleteItem(item: Damaged | number): Observable<Damaged> {
+    const id = typeof item === 'number' ? item : item.user_id;
     const url = `${this.hackatonURL}${id}`;
 
-    return this.http.delete<User>(url, httpOptions);
+    return this.http.delete<Damaged>(url, httpOptions);
   }
 
 
