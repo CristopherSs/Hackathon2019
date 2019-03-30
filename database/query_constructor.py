@@ -3,7 +3,7 @@ from enum import Enum
 from typing import Dict, List
 from database.logical_operator import LogicalOperator
 
-from Rooms.database.condition import Condition
+from database.condition import Condition
 
 
 class QueryConstructor:
