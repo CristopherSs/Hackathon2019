@@ -88,11 +88,11 @@ class Api(fl.MethodView):
         :return: nothing
         """
         fuction = self.as_view('Api' + self.__reference.__name__, self.__reference, self._database,
-                               self.__response_headers, self.__verifier)
+                               self.__response_headers)
         app.add_url_rule('/' + self.__reference.__name__ + '/'
                          , view_func=fuction, methods=['GET'])#, 'POST', 'PUT', 'OPTIONS'])
-        app.add_url_rule('/' + self.__reference.__name__ +
-                         '/<string:_id>', view_func=fuction, methods=['GET', 'DELETE', 'OPTIONS'])
+        #app.add_url_rule('/' + self.__reference.__name__ +
+        #                 '/<string:_id>', view_func=fuction, methods=['GET', 'DELETE', 'OPTIONS'])
 
     def __response_jsonify_with_access(self, list_object: list, number_error: int = 200) -> jsonify:
 
