@@ -16,8 +16,3 @@ class Disaster(Table):
 
     def get_class_name(self) -> str:
         return self.__class__.__name__
-
-    def contact_department(self) -> None:
-        data = {'reference': Department, 'ip': '', 'port': '8080'}
-        request = Query(data)
-        department = request.get_data(str(self.disaster_id))
