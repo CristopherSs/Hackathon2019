@@ -5,9 +5,7 @@
 from typing import List
 import flask.views as fl
 from flask import Flask, request, Response, jsonify
-
-from Hackathon2019.database.database import Database
-from Hackathon2019.database.i_table import Table
+from database.database import Database
 
 
 class Api(fl.MethodView):
