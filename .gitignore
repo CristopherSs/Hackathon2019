@@ -1,0 +1,10 @@
+.idea
+venv/
+__pycache__/
+API/resources_api/__pycache__/
+API/request_querys/__pycache__/
+API/__pycache__/
+test/__pycache__/
+.mypy_cache/
+.coverage
+
