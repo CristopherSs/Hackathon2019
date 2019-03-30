@@ -1,8 +1,8 @@
 """Table generator module"""
-from Rooms.database.i_query_launcher import IQueryLauncher
-from Rooms.database.i_table import Table
-from Rooms.database.query_constructor import QueryConstructor
-from Rooms.database.table_generator.class_decomposer import ClassDecomposer
+from database.i_query_launcher import IQueryLauncher
+from database.i_table import Table
+from database.query_constructor import QueryConstructor
+from database.table_generator.class_decomposer import ClassDecomposer
 
 
 class TableGenerator: # pylint: disable=too-few-public-methods

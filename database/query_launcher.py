@@ -1,8 +1,8 @@
 """Server module"""
 from typing import Union, Dict, List
 import mysql.connector as mariadb
-from Rooms.database.exceptions import NoConnection
-from Rooms.database.i_query_launcher import IQueryLauncher
+from database.exceptions import NoConnection
+from database.i_query_launcher import IQueryLauncher
 
 
 class QueryLauncher(IQueryLauncher):

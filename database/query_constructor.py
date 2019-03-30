@@ -1,7 +1,7 @@
 """query constructor module"""
 from enum import Enum
 from typing import Dict, List
-from Rooms.database.logical_operator import LogicalOperator
+from database.logical_operator import LogicalOperator
 
 from Rooms.database.condition import Condition
 

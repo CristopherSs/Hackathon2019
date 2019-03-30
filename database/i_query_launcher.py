@@ -2,6 +2,7 @@
 from abc import ABC, abstractmethod
 from typing import Union, List, Dict
 
+
 class IQueryLauncher(ABC): # pylint: disable=too-few-public-methods
     """InterfaceQueryLauncher class"""
     @abstractmethod

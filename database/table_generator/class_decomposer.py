@@ -1,8 +1,8 @@
 """Class decomposer module"""
 from datetime import date, time
 from enum import Enum
-from Rooms.database.i_table import Table
-from Rooms.database.exceptions import IsNotATable
+from database.i_table import Table
+from database.exceptions import IsNotATable
 
 
 class ClassDecomposer:

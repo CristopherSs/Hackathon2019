@@ -1,10 +1,10 @@
 """database module"""
 from typing import List
-from Rooms.database.i_query_launcher import IQueryLauncher
-from Rooms.database.logical_operator import LogicalOperator
-from Rooms.database.query_constructor import QueryConstructor
-from Rooms.database.i_table import Table
-from Rooms.database.exceptions import IsNotATable
+from database.i_query_launcher import IQueryLauncher
+from database.logical_operator import LogicalOperator
+from database.query_constructor import QueryConstructor
+from database.i_table import Table
+from database.exceptions import IsNotATable
 
 
 class Database:
