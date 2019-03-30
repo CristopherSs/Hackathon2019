@@ -7,9 +7,11 @@ from backend.user.disability import Disabilities
 @dataclass
 class User(Table):
     user_id: str
+    email: str
     password: str
     name: str
     last_name: str
+    gender: str
     disability: Disabilities
 
     def get_primary_key(self):
