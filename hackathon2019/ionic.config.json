@@ -1,5 +1,7 @@
 {
   "name": "hackathon2019",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
