@@ -5,7 +5,7 @@ from dataclasses import dataclass
 @dataclass
 class UserModel:
     """User Interface"""
-    email_id: str
+    email: str
     password: str
 
     def __eq__(self, other: 'UserModel') -> bool:
@@ -14,6 +14,6 @@ class UserModel:
         :param other:
         :return:
         """
-        if self.email_id == other.email_id and self.password == other.password:
+        if self.email == other.email and self.password == other.password:
             return True
         return False
