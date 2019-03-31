@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Start Page</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-item-group>
+      <ion-item>
+        <ion-label>{{damaged.name}}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>{{damaged.last_name}}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>{{damaged.email_id}}</ion-label>
+      </ion-item>
+    </ion-item-group>
+  </ion-card>
+  <div padding>
+    <ion-button size="large" expand="block" (click)="goBack()">Atras</ion-button>
+  </div>
+
+</ion-content>
