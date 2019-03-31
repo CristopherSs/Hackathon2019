@@ -5,6 +5,8 @@
 from typing import List
 import flask.views as fl
 from flask import Flask, request, Response, jsonify
+
+from database.condition import Condition
 from database.database import Database
 
 
@@ -14,11 +16,11 @@ class Api(fl.MethodView):
     """
 
     def __init__(self, reference: type, database: Database,
-                 headers: dict) -> None:
+                 headers: dict, ) -> None:
         self._database = database
         self.__reference = reference
         self.__reference_name = reference.__name__.lower()
-        #self.__verifier = verifier
+        # self.__verifier = verifier
         self.__response_headers = headers
 
     def post(self) -> jsonify:
@@ -37,7 +39,7 @@ class Api(fl.MethodView):
         """
         data = request.get_json()
         object_from_data = self.__reference(**data)
-        data_on_onject =  self._database.update(object_from_data)
+        data_on_onject = self._database.update(object_from_data)
         return self.__response_jsonify_with_access(self.__obtain_dictionary_for_json([data_on_onject]))
 
     def get(self, _id: str = None) -> jsonify:
@@ -46,23 +48,23 @@ class Api(fl.MethodView):
         :param id_room: identifier from room
         :return: a list with all data of reference
         """
-        #if not _id and self.__reference :
-        list_of_data = self._database.get_all(self.__reference)
-        #else:
-        #    list_of_data = self._database.get_specific_data \
-        #        (self.__reference)
+        if not _id:
+            list_of_data = self._database.get_all(self.__reference)
+        else:
+            list_of_data = self._database.get_specific_data \
+                (self.__reference, [Condition('email_id', '=', _id)])
         return self.__response_jsonify_with_access(list_of_data)
 
-    #def delete(self, _id: str) -> jsonify:
-     #   """
-     #   this method delete one object in special
-      #  :return: nothing
-      #  """
-      #  data = request.get_json()
-      #  data[self.__reference_name + '_id'] = _id
-      #  new_objetc = self.__reference(**data)
-      #  self._database.delete(new_objetc)
-      #  return self.__response_jsonify_with_access([new_objetc])
+    # def delete(self, _id: str) -> jsonify:
+    #   """
+    #   this method delete one object in special
+    #  :return: nothing
+    #  """
+    #  data = request.get_json()
+    #  data[self.__reference_name + '_id'] = _id
+    #  new_objetc = self.__reference(**data)
+    #  self._database.delete(new_objetc)
+    #  return self.__response_jsonify_with_access([new_objetc])
 
     def options(self, _id: str = None) -> Response:
         """
@@ -82,8 +84,8 @@ class Api(fl.MethodView):
                                self.__response_headers)
         app.add_url_rule('/' + self.__reference.__name__ + '/'
                          , view_func=fuction, methods=['GET', 'POST', 'PUT', 'OPTIONS'])
-        #app.add_url_rule('/' + self.__reference.__name__ +
-        #                 '/<string:_id>', view_func=fuction, methods=['GET', 'DELETE', 'OPTIONS'])
+        app.add_url_rule('/' + self.__reference.__name__ +
+                         '/<string:_id>', view_func=fuction, methods=['GET', 'DELETE', 'OPTIONS'])
 
     def __response_jsonify_with_access(self, list_object: list, number_error: int = 200) -> jsonify:
 
@@ -107,7 +109,7 @@ class Api(fl.MethodView):
                 list_dictionarys.append(instance.get_dict())
         return list_dictionarys
 
-    #def __execute_method(self, object_to_examine: Table, method_database: type,
+    # def __execute_method(self, object_to_examine: Table, method_database: type,
     #                     method_verifier: type = True) -> Response:
     #    """
     #        execute the next algorithm
