@@ -6,7 +6,7 @@ from backend.department.areas import Areas
 
 @dataclass
 class Department(Table):
-    user_name: str
+    email_id: str
     password: str
     area: Areas
     city_id: int
