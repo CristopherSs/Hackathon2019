@@ -9,9 +9,10 @@ from backend.department.areas import Areas
 class Department(Table, UserModel):
     area: Areas
     city_id: int
+    department_id: int = 0
 
     def get_primary_key(self) -> str:
-        return 'email_id'
+        return 'department_id'
 
     def get_class_name(self) -> str:
         return self.__class__.__name__
