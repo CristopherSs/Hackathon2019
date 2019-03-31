@@ -11,9 +11,10 @@ class User(Table, UserModel):
     last_name: str
     gender: str
     disability: Disabilities
+    user_id: int = 0
 
     def get_primary_key(self):
-        return 'email_id'
+        return 'user_id'
 
     def get_class_name(self) -> str:
         return self.__class__.__name__
