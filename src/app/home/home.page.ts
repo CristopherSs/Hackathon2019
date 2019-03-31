@@ -13,7 +13,8 @@ export class HomePage {
     location = {lat: null, lng: null};
     markerOptions: any = {position: null, map: null, title: null};
     marker: any;
-    apiKey: any = 'AIzaSyBYsrzeyP_N8T32iJucPns8GJ0usPdWfO4';
+    //apiKey: any = 'AIzaSyBYsrzeyP_N8T32iJucPns8GJ0usPdWfO4';
+    apiKey : any = 'AIzaSyConyT6pKqX1FQXwHSKWCmmT6g9CKmRmXw';
   constructor(public zone: NgZone, public geolocation: Geolocation) {
     /*load google map script dynamically */
       const script = document.createElement('script');
