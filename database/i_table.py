@@ -27,7 +27,7 @@ class Table(ABC):
         :return: data dict
         """
         data_dict_self = {}
-        attribute_self = self.__annotations__
+        attribute_self = self.__dict__
         for name_attribute in attribute_self.keys():
             value = self.__getattribute__(name_attribute)
             if isinstance(value, Enum):

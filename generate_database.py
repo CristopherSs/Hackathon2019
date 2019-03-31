@@ -3,7 +3,8 @@ import json
 from typing import Dict
 
 from backend.city.city import City
-from backend.department.department import Department
+from backend.disaster_department.disaster_department import DisasterDepartment
+from backend.user.department import Department
 from backend.disaster.disaster import Disaster
 from backend.protocol.protocol import Protocol
 from database.database import Database
@@ -26,19 +27,19 @@ def generate(config: Dict) -> None:
         config = json.load(file)
     launcher.change_config_values(config)
     generator = TableGenerator(launcher)
-    data = {'user_id': '', 'password': '', 'gender': '', 'name': '', 'last_name': '',
-            'disability': Disabilities.NONE, 'email': ''}
+    data = {'email_id': '', 'password': '', 'gender': '', 'name': '', 'last_name': '',
+            'disability': Disabilities.NONE}
     user = User(**data)
     generator.generate(user)
     data = {'city_name': '', 'city_id': 0}
     city = City(**data)
     generator.generate(city, True)
 
-    data = {'user_name': '', 'password': '', 'area': Areas.FIREFIGHTERS, 'city_id': 0, 'department_id': 0}
+    data = {'email_id': '', 'password': '', 'area': Areas.FIREFIGHTERS, 'city_id': 0}
     department = Department(**data)
-    generator.generate(department, True)
+    generator.generate(department)
 
-    data = {'disaster_name': '', 'department_id': 0}
+    data = {'disaster_name': ''}
     disaster = Disaster(**data)
     generator.generate(disaster, True)
 
@@ -46,25 +47,34 @@ def generate(config: Dict) -> None:
     protocol = Protocol(**data)
     generator.generate(protocol, True)
 
+    query = 'CREATE TABLE IF NOT EXISTS DisasterDepartment (disaster_id INT(5) NOT NULL, department_id ' \
+            'VARCHAR(50) NOT NULL, CONSTRAINT FOREIGN KEY (disaster_id) REFERENCES disaster(disaster_id) ON DELETE ' \
+            'CASCADE ON UPDATE RESTRICT, CONSTRAINT FOREIGN KEY (department_id) REFERENCES department(email_id) ' \
+            'ON DELETE CASCADE ON UPDATE RESTRICT)'
+    launcher.launch(query)
+
     database = Database(launcher)
 
-    user_data = {'user_id': 'sebas', 'password': '123','gender': 'male',
-                 'name': 'Sebastian', 'last_name': 'Medrano', 'disability': Disabilities.NONE,
-                 'email': 'sebas@hotmail.com'}
+    user_data = {'email_id': 'sebas', 'password': '123','gender': 'male',
+                 'name': 'Sebastian', 'last_name': 'Medrano', 'disability': Disabilities.NONE}
     user = User(**user_data)
     database.save_data(user)
     city_data = {'city_name': 'Cochabamba'}
     city = City(**city_data)
     city = database.save_data(city)
-    department_data = {'user_name': 'police123', 'password': '1234', "area": Areas.POLICE, 'city_id': city.city_id}
+    department_data = {'email_id': 'police123', 'password': '1234', "area": Areas.POLICE, 'city_id': city.city_id}
     department = Department(**department_data)
-    department = database.save_data(department)
-    disaster_data = {'disaster_name': 'fire', 'department_id': department.department_id}
+    database.save_data(department)
+    disaster_data = {'disaster_name': 'fire'}
     disaster = Disaster(**disaster_data)
     disaster = database.save_data(disaster)
     protocol_data = {'advice': 'evacuate', 'disaster_id': disaster.disaster_id}
     protocol = Protocol(**protocol_data)
     database.save_data(protocol)
+
+    disaster_department_data = {'disaster_id': disaster.disaster_id, 'department_id': 'police123'}
+    disaster_department = DisasterDepartment(**disaster_department_data)
+    database.save_data(disaster_department)
 
 
 if __name__ == '__main__':
