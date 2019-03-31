@@ -1,6 +1,5 @@
 export class Damaged{
-    user_id: string;
-    email: string;
+    email_id: string;
     password: string;
     name: string;
     last_name: string;
