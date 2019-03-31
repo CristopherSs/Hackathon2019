@@ -14,8 +14,8 @@ class LoginVerifier:
         :return: bool
         """
         for user_data in self.__existent_users:
-            if user_data[email]:
-                if user_data[password] == password:
+            if user_data['email'] == email:
+                if user_data['password'] == password:
                     return True
                 else:
                     return False
