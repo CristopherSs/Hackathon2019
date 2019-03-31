@@ -13,7 +13,7 @@ class User(Table, UserModel):
     disability: Disabilities
 
     def get_primary_key(self):
-        return 'user_id'
+        return 'email_id'
 
     def get_class_name(self) -> str:
         return self.__class__.__name__
