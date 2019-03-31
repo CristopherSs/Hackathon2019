@@ -1,25 +1,41 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title>
+            ALL RESCATE
+        </ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div class="ion-padding">
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
-  </div>
-  <div>
-    <ion-title></ion-title>
+
     <ion-grid>
-      <ion-row>
-        <ion-col class= "center">
-          <ion-button class="centerButtons" color="success"round (click)="goRegisterPerson()">Registrar</ion-button>
-          <ion-button class="centerButtons" color="primary"round (click)="goMap()"> Map</ion-button>
-        </ion-col>
-      </ion-row>
+        <ion-row justify-content-center>
+            <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+                <div text-center>
+                    <h4>Iniciar Sesion</h4>
+                </div>
+                <div padding>
+                    <ion-item>
+                        <ion-input type="text" placeholder="Nombre de Usuario" [(ngModel)]="damaged.email"></ion-input>
+                    </ion-item>
+
+                    <ion-item>
+                        <ion-input type="text" placeholder="Contraseña" [(ngModel)]="damaged.password"></ion-input>
+                    </ion-item>
+                </div>
+
+                <div padding>
+                    <ion-button size="large" expand="block"
+                                (click)="signIn(damaged.email, damaged.password)">
+                        Iniciar Sesion
+                    </ion-button>
+
+                    <ion-button size="large" expand="block" class="centerButtons" color="success"
+                                (click)="goRegisterPerson()">
+                        Registrarse
+                    </ion-button>
+                </div>
+            </ion-col>
+        </ion-row>
     </ion-grid>
-  </div>
 </ion-content>

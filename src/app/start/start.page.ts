@@ -4,7 +4,6 @@ import {Damaged} from '../damaged';
 import {HackatonService} from '../hackaton.service';
 import {Location} from '@angular/common';
 
-
 @Component({
     selector: 'app-start',
     templateUrl: './start.page.html',
@@ -25,17 +24,20 @@ export class StartPage implements OnInit {
     }
 
     getDamaged(): void {
-        const email_id = this.route.snapshot.paramMap.get('email_id');
+        const email_id = this.route.snapshot.paramMap.get('email');
         console.log('startpage:' + email_id);
         this.hackathonService.getItem(email_id)
             .subscribe(item => this.damaged = item);
-                // this.meeting.push(meeting as unknown as Meeting)
         const aux = this.hackathonService.getItem(email_id);
-        console.log((aux));
+        console.log(aux[0]);
     }
 
     goBack(): void {
         this.location.back();
+    }
+
+    refresh(): void {
+        this.getDamaged();
     }
 
 }

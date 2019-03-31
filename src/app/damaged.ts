@@ -1,5 +1,5 @@
-export class Damaged{
-    email_id: string;
+export class Damaged {
+    email: string;
     password: string;
     name: string;
     last_name: string;

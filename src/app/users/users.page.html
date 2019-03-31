@@ -1,47 +1,50 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Usuario</ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title>Usuario</ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-grid>
-    <ion-row justify-content-center>
-      <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
-        <div text-center>
-          <h4>Registrar Usuario</h4>
-        </div>
-        <div padding>
-          <ion-item>
-            <ion-input type="text" placeholder="Nombre" [(ngModel)]="damaged.name"></ion-input>
-          </ion-item>
+    <ion-grid>
+        <ion-row justify-content-center>
+            <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+                <div text-center>
+                    <h4>Registrar Usuario</h4>
+                </div>
+                <div padding>
+                    <ion-item>
+                        <ion-input type="text" placeholder="Nombre" [(ngModel)]="damaged.name"></ion-input>
+                    </ion-item>
 
-          <ion-item>
-            <ion-input type="text" placeholder="Apellido" [(ngModel)]="damaged.last_name"></ion-input>
-          </ion-item>
+                    <ion-item>
+                        <ion-input type="text" placeholder="Apellido" [(ngModel)]="damaged.last_name"></ion-input>
+                    </ion-item>
 
-          <ion-item>
-            <ion-input type="text" placeholder="Email" [(ngModel)]="damaged.email_id"></ion-input>
-          </ion-item>
+                    <ion-item>
+                        <ion-input type="text" placeholder="Nombre de Usuario" [(ngModel)]="damaged.email"></ion-input>
+                    </ion-item>
 
-          <ion-item>
-            <ion-input type="text" placeholder="contraseña" [(ngModel)]="damaged.password"></ion-input>
-          </ion-item>
+                    <ion-item>
+                        <ion-input type="text" placeholder="contraseña" [(ngModel)]="damaged.password"></ion-input>
+                    </ion-item>
 
-          <ion-item>
-            <ion-input type="text" placeholder="Genero" [(ngModel)]="damaged.gender"></ion-input>
-          </ion-item>
+                    <ion-item>
+                        <ion-input type="text" placeholder="Genero" [(ngModel)]="damaged.gender"></ion-input>
+                    </ion-item>
 
-          <ion-item>
-            <ion-input type="text" placeholder="Discapacidad" [(ngModel)]="damaged.disability"></ion-input>
-          </ion-item>
+                    <ion-item>
+                        <ion-input type="text" placeholder="Discapacidad" [(ngModel)]="damaged.disability"></ion-input>
+                    </ion-item>
 
-        </div>
+                </div>
 
-        <div padding>
-          <ion-button size="large" expand="block" (click)="add(damaged.email_id, damaged.name, damaged.last_name, damaged.password, damaged.gender, damaged.disability)">Registrar</ion-button>
-        </div>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+                <div padding>
+                    <ion-button size="large" expand="block"
+                                (click)="add(damaged.email, damaged.name, damaged.last_name, damaged.password, damaged.gender, damaged.disability)">
+                        Registrar
+                    </ion-button>
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
 </ion-content>

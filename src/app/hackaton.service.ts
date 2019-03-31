@@ -27,28 +27,35 @@ export class HackatonService {
             );
     }
 
-    getItem(id: string): Observable<Damaged> {
+    getItem(id: string): Observable<Damaged[]> {
         console.log(id);
-        const url = `${this.hackatonURL}${id}`;
-        console.log(this.http.get<Damaged>(url));
+        const url = `${this.hackatonURL}?email=${id}`;
+        const aux = this.http.get<Damaged[]>(url);
+        console.log('get: ' + aux.pipe());
+        return this.http.get<Damaged[]>(url);
+    }
+
+    getItemTest(id: string, password: string): Observable<Damaged> {
+        const url = `${this.hackatonURL}?email=${id}&password=${password}`;
+        console.log(url);
         return this.http.get<Damaged>(url);
     }
 
     postItem(item: Damaged): Observable<Damaged> {
         return this.http.post<Damaged>(this.hackatonURL, item, httpOptions).pipe(
-            tap((newItem: Damaged) => this.log(`added damaged w/ id=${newItem.email_id}`)),
+            tap((newItem: Damaged) => this.log(`added damaged w/ id=${newItem.email}`)),
             catchError(this.handleError<Damaged>('addDamaged'))
         );
     }
 
     updateItem(item: Damaged): Observable<any> {
-        const id = typeof item === 'number' ? item : item.email_id;
+        const id = typeof item === 'number' ? item : item.email;
         const url = `${this.hackatonURL}${id}`;
         return this.http.put(url, item, httpOptions);
     }
 
     deleteItem(item: Damaged | number): Observable<Damaged> {
-        const id = typeof item === 'number' ? item : item.email_id;
+        const id = typeof item === 'number' ? item : item.email;
         const url = `${this.hackatonURL}${id}`;
 
         return this.http.delete<Damaged>(url, httpOptions);
