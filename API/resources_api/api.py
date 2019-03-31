@@ -21,33 +21,24 @@ class Api(fl.MethodView):
         #self.__verifier = verifier
         self.__response_headers = headers
 
-   # def post(self) -> jsonify:
-    #    """
-     #   this method insert on database and verifier that not exist on database
-      #data = request.get_json()
-        #object_from_data = self.__reference(**data)
-       # method_database = self._database.save_data
-       # if self.__verifier is None:
-       #     response = self.__execute_method(object_from_data, method_database)
-       # else:
-        #    response = self.__execute_method(object_from_data, method_database,
-         #                                    self.__verifier.can_add)
-        #return response
+    def post(self) -> jsonify:
+        """
+        this method insert on database and verifier that not exist on database
+        """
+        data = request.get_json()
+        object_from_data = self.__reference(**data)
+        data_on_object = self._database.save_data(object_from_data)
+        return self.__response_jsonify_with_access(self.__obtain_dictionary_for_json([data_on_object]))
 
-    #def put(self) -> jsonify:
-     #   """
-      #  this method update on database
-       # :return: nothing
-        #"""
-        #data = request.get_json()
-        #object_from_data = self.__reference(**data)
-        #method_database = self._database.update
-        #if self.__verifier is None:
-        #    response = self.__execute_method(object_from_data, method_database)
-        #else:
-        #    response = self.__execute_method(object_from_data, method_database,
-        #                                     self.__verifier.can_update)
-        #return response
+    def put(self) -> jsonify:
+        """
+        this method update on database
+        :return: nothing
+        """
+        data = request.get_json()
+        object_from_data = self.__reference(**data)
+        data_on_onject =  self._database.update(object_from_data)
+        return self.__response_jsonify_with_access(self.__obtain_dictionary_for_json([data_on_onject]))
 
     def get(self, _id: str = None) -> jsonify:
         """
@@ -90,7 +81,7 @@ class Api(fl.MethodView):
         fuction = self.as_view('Api' + self.__reference.__name__, self.__reference, self._database,
                                self.__response_headers)
         app.add_url_rule('/' + self.__reference.__name__ + '/'
-                         , view_func=fuction, methods=['GET'])#, 'POST', 'PUT', 'OPTIONS'])
+                         , view_func=fuction, methods=['GET', 'POST', 'PUT', 'OPTIONS'])
         #app.add_url_rule('/' + self.__reference.__name__ +
         #                 '/<string:_id>', view_func=fuction, methods=['GET', 'DELETE', 'OPTIONS'])
 
