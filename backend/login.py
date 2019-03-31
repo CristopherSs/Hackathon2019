@@ -1,12 +1,22 @@
-from flask import request
-
-from API.request_querys.request import Query
+from typing import List
 
 
 class LoginVerifier:
-    def __init__(self, api: Query) -> None:
-        self.__api = api
+    """Login Verifier for when someone tries to login"""
+    def __init__(self, existent_users: List) -> None:
+        self.__existent_users = existent_users
 
-    def login(self) -> bool:
-        data_to_examine = request.get_json()
-        self.__api.get_data(data_to_examine['email_id'])
+    def login(self, email: str, password: str) -> bool:
+        """
+        compares email and password in case the email exists in the database
+        :param email: str
+        :param password: str
+        :return: bool
+        """
+        for user_data in self.__existent_users:
+            if user_data[email]:
+                if user_data[password] == password:
+                    return True
+                else:
+                    return False
+        return False
