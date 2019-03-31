@@ -43,7 +43,7 @@ export class HomePage {
           this.markerOptions.map = this.map;
           this.markerOptions.title = 'My Location';
           this.marker = new google.maps.Marker(this.markerOptions);
-      }, 3000);
+      }, 10000);
   }
 
 }
